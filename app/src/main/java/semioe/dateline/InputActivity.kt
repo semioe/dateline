@@ -74,8 +74,8 @@ class InputActivity : AppCompatActivity() {
             var obj_text=input_obj_text.text
             var obj_tag=input_obj_tag.text
 
-            when (action) {
-                "0"->{
+            when (_id.toInt()) {
+                0->{
                     dbHelper.exec("insert into objs(title,text,tag,expire_date)values('$obj_title','$obj_text','$obj_tag','$obj_expire_date')")
                 }else->{
                     dbHelper.exec("update objs set title='$obj_title',text='$obj_text',tag='$obj_tag',expire_date='$obj_expire_date' where _id=$_id")
