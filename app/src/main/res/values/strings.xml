@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">小语过期提醒</string>
+    <string name="title_activity_input">InputActivity</string>
+</resources>

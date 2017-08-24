@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/obj_id"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/obj_title"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center|left"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/obj_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center|left"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/obj_expire_date"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center|left"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/obj_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center|left"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1" />
+</LinearLayout>
