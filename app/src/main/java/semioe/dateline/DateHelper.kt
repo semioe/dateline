@@ -18,37 +18,8 @@ class DateHelper(){
         val a = simpleFormat.parse(expireDate).time
         val b = simpleFormat.parse(nowDate).time
 
-        var second = ((a - b) / 1000).toInt()
-        var minutes = (second/60).toInt()
-        var hours = (minutes/60).toInt()
-        val days = (hours/24).toInt()
-
-
-        /*
-        while(hours>24){
-            hours -= 24;
-        }
-
-        while(minutes>60){
-            minutes -= 60;
-        }
-
-        while(second>60){
-            second -= 60;
-        }
-
-        var oktime="$days 日 $hours 时 $minutes 分 $second 秒"
-
-        if(days<=0){
-            oktime="$hours 时 $minutes 分 $second 秒"
-            if(hours<=0){
-                oktime="$minutes 分 $second 秒"
-                if(minutes<=0){
-                    oktime="$second 秒"
-                }
-            }
-        }*/
-        return days.toInt()
+        var days = ((a - b) / 1000*60*60*24).toInt()
+        return days
     }
 
 }
