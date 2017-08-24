@@ -18,7 +18,7 @@ class DateHelper(){
         val a = simpleFormat.parse(expireDate).time
         val b = simpleFormat.parse(nowDate).time
 
-        var days = ((a - b) / 1000*60*60*24).toInt()
+        var days = ((a - b) / 1000/60/60/24).toInt()
         return days
     }
 
