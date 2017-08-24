@@ -64,6 +64,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        objs.onItemClickListener=AdapterView.OnItemClickListener{adapterView, view, i, l ->
+            var _id = view.obj_id.text
+            val intent = Intent(this@MainActivity, InputActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("_id", _id.toString())
+            bundle.putString("action", "edit")
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
         objs.onItemLongClickListener= AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
             var _id = view.obj_id.text
             val alertDialogBuilder = AlertDialog.Builder(this)

@@ -10,6 +10,7 @@ import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_input.*
 
 class InputActivity : AppCompatActivity() {
+    var _id="0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,21 @@ class InputActivity : AppCompatActivity() {
             }
             "edit"->{
                 //修改
-                var _id=bundle.getString("_id")
+                _id=bundle.getString("_id")
+                var c=dbHelper.cursor("select * from objs where _id=$_id")
+                if(c!=null){
+                    if (c.moveToNext()) {
+                        val _id = c.getInt(c.getColumnIndex("_id"))
+                        val title = c.getString(c.getColumnIndex("title"))
+                        val text = c.getString(c.getColumnIndex("text"))
+                        val tag = c.getString(c.getColumnIndex("tag"))
+                        val expire_date = c.getString(c.getColumnIndex("expire_date"))
+                        input_obj_title.setText(title)
+                        input_obj_text.setText(text)
+                        input_obj_tag.setText(tag)
+                        input_obj_expire_date.setText(expire_date)
+                    }
+                }
             }
         }
 
@@ -58,7 +73,15 @@ class InputActivity : AppCompatActivity() {
             var obj_expire_date=input_obj_expire_date.text
             var obj_text=input_obj_text.text
             var obj_tag=input_obj_tag.text
-            dbHelper.exec("insert into objs(title,text,tag,expire_date)values('$obj_title','$obj_text','$obj_tag','$obj_expire_date')")
+
+            when (action) {
+                "0"->{
+                    dbHelper.exec("insert into objs(title,text,tag,expire_date)values('$obj_title','$obj_text','$obj_tag','$obj_expire_date')")
+                }else->{
+                    dbHelper.exec("update objs set title='$obj_title',text='$obj_text',tag='$obj_tag',expire_date='$obj_expire_date' where _id=$_id")
+                }
+            }
+
             val intent = Intent(this@InputActivity, MainActivity::class.java)
             val bundle = Bundle()
             bundle.putString("action", "insert")
