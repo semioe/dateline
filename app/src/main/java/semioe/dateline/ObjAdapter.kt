@@ -15,12 +15,13 @@ class ObjAdapter(context: Context, items: ArrayList<Map<String, Any>>, resource:
         var view=super.getView(position, convertView, parent)
         var days=DateHelper().days(view.obj_expire_date.text.toString())
 
-        view.info.setText(days.toString())
-        
+        var absDays=Math.abs(days)
+
         if (days<=0){
             view.obj_title.setTextColor(android.graphics.Color.RED)
+            view.info.setText("已过期 $absDays 天")
         }else{
-
+            view.info.setText("还有 $absDays 天过期")
         }
         return view
     }
