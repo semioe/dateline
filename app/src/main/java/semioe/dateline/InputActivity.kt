@@ -82,7 +82,7 @@ class InputActivity : AppCompatActivity() {
                 }
             }
 
-            val intent = Intent(this@InputActivity, MainActivity::class.java)
+            val intent = Intent(this@InputActivity, ListActivity::class.java)
             val bundle = Bundle()
             bundle.putString("action", "insert")
             //bundle.putString("_id", "2")

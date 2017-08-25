@@ -6,18 +6,21 @@ import android.database.sqlite.SQLiteDatabase
 class DbHelper(baseContext: Context) {
 
     private lateinit var db:SQLiteDatabase
+
     init {
         var dbName="semioe"
-        this.db= SQLiteDatabase.openOrCreateDatabase(baseContext.filesDir.path+"$dbName.db",null);
+        db= SQLiteDatabase.openOrCreateDatabase(baseContext.filesDir.path+"$dbName.db",null);
     }
     fun exec(sql:String){
-        this.db.execSQL(sql)
+        db.execSQL(sql)
     }
+
+
     //是否存在表
     fun isTableExist(tableName: String): Boolean {
         val sql = "select count(*) as c from sqlite_master where type ='table' and name ='$tableName' "
         var flag=false
-        var cursor = this.db.rawQuery(sql, null)
+        var cursor = db.rawQuery(sql, null)
         if (cursor.moveToNext()) {
             val count = cursor.getInt(0)
             if (count > 0) {
@@ -30,7 +33,11 @@ class DbHelper(baseContext: Context) {
     }
 
     fun cursor(sql: String): Cursor? {
-        return this.db.rawQuery(sql, null)
+        return db.rawQuery(sql, null)
+    }
+
+    fun count(sql: String): Int {
+        return cursor(sql)!!.count
     }
 
     //是否存在字段
@@ -39,7 +46,7 @@ class DbHelper(baseContext: Context) {
         var cursor: Cursor? = null
         try {
             //查询一行
-            cursor = this.db.rawQuery("SELECT * FROM $tableName LIMIT 0", null)
+            cursor = db.rawQuery("SELECT * FROM $tableName LIMIT 0", null)
             result = cursor != null && cursor.getColumnIndex(columnName) != -1
         } catch (e: Exception) {
             //Log.e(TAG, "checkColumnExists1..." + e.message)
@@ -52,6 +59,6 @@ class DbHelper(baseContext: Context) {
     }
 
     fun closeDB(){
-        this.db.close()
+        db.close()
     }
 }
